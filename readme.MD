@@ -1,5 +1,6 @@
 # Ansible Role
 - Role is a proper structure of variables, tasks, templates, handlers etc. Using roles we can re use the code.
+Role main principle is DRY principle(i.e reuse the code)
 
 Ansible role git folder will have a folder called roles. ex: for db we created a folder called db(common folder) inside roles.
 This db folder will have so many folders like:
