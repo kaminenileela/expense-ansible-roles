@@ -37,6 +37,12 @@ we run playbook as below
 - ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 <yaml-file-name> 
 but if we set inventory = <path of inventory> in ansible.cfg we can remove -i inventory.ini from above command while running.
 
+if we set remote_user = ec2-user we can remove -e ansible_user=ec2-user from above when running.
+as we dont have option to save ansible_password in ansible.cfg, we can keep in inventory as below:
+
+[all:vars]
+ansible_password=DevOps321
+
 .j2 ---> jinja2 template language
 
 # Ansible templates
@@ -45,3 +51,21 @@ ansible.builtin.template is exactly like copy but when its given ansibles goes t
 
 # Ansible handlers
 - handlers are notifiers in ansible.Usually when there is a change in some configuration ansible can notify the particular task to restart server.
+
+To run the code:
+ansible-playbook main.yaml -e component=db
+ansible-playbook main.yaml -e component=backend
+ansible-playbook main.yaml -e component=frontend
+
+# Ansible Vault
+ansible-vault create <file-name>.yaml ---> need to set password (ex: admin1234)
+ansible-vault view <file-name>.yaml ---> to see content in the file
+ansible-vault edit <file-name>.yaml  ----> to edit (i have set mysql_password), ansible_user and ansible_password in the credentials.yaml so i removed from ansible.cfg and inventory.ini
+
+
+when vault is used, run as:
+ansible-playbook db.yaml --ask-vault-pass
+
+- we created vault file and passed as variable file in ansible-playbook.
+
+

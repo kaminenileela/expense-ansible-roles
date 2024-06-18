@@ -9,23 +9,10 @@
     state: started
     enabled: yes
 
-- name: remove default content from web server
-  ansible.builtin.file:
-    path: /usr/share/nginx/html  #delete html directory as * is not deleting anything
-    state: absent
-
-- name: create html directory
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
-
-
-# ansible unarchive module has a code taht can unarchive a file that needs to be downloaded
-- name: download and Unzip frontend code
-  ansible.builtin.unarchive:
-    src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
+- name: run app pre-requisites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-pre-req
 
 # if there is change in configuration only, then you need to restart
 - name: copy Nginx Reverse Proxy Configuration
