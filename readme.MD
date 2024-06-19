@@ -68,4 +68,10 @@ ansible-playbook db.yaml --ask-vault-pass
 
 - we created vault file and passed as variable file in ansible-playbook.
 
+# Ansible Tags
+- If you have a large playbook, it may be useful to run only specific parts of it instead of running the entire playbook using tags.
+
+To run only tagged tasks:
+ansible-playbook backend.yaml --ask-vault-pass -t deployment
+
 
