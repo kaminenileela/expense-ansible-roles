@@ -74,4 +74,38 @@ ansible-playbook db.yaml --ask-vault-pass
 To run only tagged tasks:
 ansible-playbook backend.yaml --ask-vault-pass -t deployment
 
+# Ansible dynamic inventory
+Ansible dynamic inventory is a plugin that can fetch the hostnames dynamically from the cloud providers.
+we use ansible dynamic inventory with aws_ec2 plugin, when ever we require some changes in the servers like 
+some emergency changes we write some playbook and we run against those servers dynamically.
+
+ex: there are 20 servers runing based on traffic, you need to do some simple thing on emergency basis in all these servers.
+
+1. Query AWS EC2 instances.
+2. Query only specific instances based on project.
+3. Get their IP address
+4. Now connect
+
+create IAM user and give CLI access:
+In command line, do --> aws configure
+.
+.
+.
+- create aws_ec2.yaml
+- ansible to connect to aws, we need botocore, boto3 modules
+- pip3.9 install boto3 botocore
+- ansible-inventory -i aws_ec2.yaml --graph (gets all instances)
+To get specific instances 
+instance name starts with Backend, use keyed groups...
+
+create dynamic.yaml
+ansible-playbook -i aws_ec2.yaml -e ansible_user=ec2-user -e ansible_password=DevOps321 dynamic.yaml
+
+
+
+
+
+
+
+
 
