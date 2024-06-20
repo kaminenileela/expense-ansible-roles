@@ -108,8 +108,9 @@ there should be some resources consumed to establish connection and run playbook
 keep forks=3 in ansible.cfg, then it queries 3 servers at a time
 
 - ansible-playbook -vvv -i aws_ec2.yaml -e ansible_user=ec2-user -e ansible_password=DevOps321 dynamic.yaml
-(to see whats happening in background)
+(to see whats happening in background for debugging purpose)
 
+- set log_path in ansible.cfg to store logs
 
 
 
