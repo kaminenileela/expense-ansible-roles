@@ -101,6 +101,13 @@ instance name starts with Backend, use keyed groups...
 create dynamic.yaml
 ansible-playbook -i aws_ec2.yaml -e ansible_user=ec2-user -e ansible_password=DevOps321 dynamic.yaml
 
+# Ansible forks
+t2.micro --> 1cpu 1GB RAM--- my ansible server is small
+there should be some resources consumed to establish connection and run playbooks
+
+keep forks=3 in ansible.cfg, then it queries 3 servers at a time
+
+
 
 
 
