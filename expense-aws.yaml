@@ -24,11 +24,12 @@
 
   - name: create r53 records
     amazon.aws.route53:
-      state: present
-      zone: " {{ zone }}"
+      command: create
+      zone: learningdevopsaws.online
       record: " {{ item }}.{{ zone }}"
       type: A
       value: "{{ item.instances[0].private_ip_address }}"
       overwrite: true
       ttl: 1
+      wait: true
     loop: "{{ ec2_instances_info.results }}"
