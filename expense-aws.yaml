@@ -28,10 +28,9 @@
       zone: learningdevopsaws.online
       record: " {{ instances }}.{{ zone }}"
       type: A
-      value: "{{ item.instances[].private_ip_address }}"
+      value: "{{ item.instances.private_ip_address }}"
       overwrite: true
       ttl: 1
       wait: true
-    loop: 
-    - "{{ ec2_instances_info.results[] }}"
+    loop: "{{ ec2_instances_info.results }}"
     
