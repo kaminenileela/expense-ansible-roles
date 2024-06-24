@@ -31,4 +31,4 @@
       value: "{{ item.private_dns_name }}"
       overwrite: true
       ttl: 1
-    loop: "{{ ec2_instances_info.result.instances }}"
+    loop: "{{ ec2_instances_info.results["instances"] }}"
