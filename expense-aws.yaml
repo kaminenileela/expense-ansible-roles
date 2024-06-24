@@ -33,5 +33,5 @@
       ttl: 1
       wait: true
     loop: 
-    - "{{ ec2_instances_info.results }}"
+    - "{{ ec2_instances_info.results[] }}"
     
